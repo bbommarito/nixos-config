@@ -13,6 +13,11 @@
       fish =
         {
           enable = true;
+
+          shellInit =
+            ''
+              gpg-connect-agent updatestartuptty /bye
+            '';
         };
 
       git =
@@ -59,6 +64,8 @@
           viAlias = true;
           vimAlias = true;
         };
+        
+      ssh.enable = true;
     };
 
   services =
@@ -67,12 +74,12 @@
         {
           enable = true;
           enableFishIntegration = true;
-          enableScDaemon = true;
           enableSshSupport = true;
 
           sshKeys =
             [
               "43FFFE87392A3EA8128FE0356CE3AA586F4F63F7"
+              "cardno:13 193 209"
             ];
         };
     };

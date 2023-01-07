@@ -67,6 +67,11 @@
       hostPlatform = lib.mkDefault "x86_64-linux";
     };
 
+  programs =
+    {
+      ssh.startAgent = true;
+    };
+
   security.rtkit.enable = true;
 
   services =
