@@ -1,9 +1,30 @@
 { config, pkgs, ... }:
 
 {
+  imports = [./mail];
+
+
   home = 
     {
+      file =
+        {
+          ".mailcap" =
+            {
+              target = ".mailcap";
+              text =
+                ''
+                  text/html; ${pkgs.lynx}/bin/lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
+                '';
+            };
+        };
+
       homeDirectory = "/home/bbommarito";
+
+      packages = with pkgs;
+        [
+          lynx
+        ];
+
       stateVersion = "22.11";
       username = "bbommarito";
     };
@@ -52,6 +73,9 @@
           enable = true;
         };
 
+      mbsync.enable = true;
+      msmtp.enable = true;
+
       neovim =
         {
           enable = true;
@@ -65,6 +89,7 @@
           vimAlias = true;
         };
         
+      password-store.enable = true;
       ssh.enable = true;
     };
 
