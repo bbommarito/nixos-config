@@ -136,17 +136,7 @@
 
       xserver =
         {
-          desktopManager.session =
-            [
-              {
-                name = "xession";
-                start =
-                  ''
-                    ${pkgs.runtimeShell} $HOME/.xsession &
-                    waitPID=$!
-                  '';
-              }
-            ];
+          displayManager.startx.enable = true;
 
           enable = true;
 
@@ -164,6 +154,7 @@
                   tapping = true;
                 };
             };
+
         };
     };
 
