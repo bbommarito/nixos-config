@@ -133,6 +133,38 @@
               ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video $sys$devpath/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w $sys$devpath/brightness"
             '';
         };
+
+      xserver =
+        {
+          desktopManager.session =
+            [
+              {
+                name = "xession";
+                start =
+                  ''
+                    ${pkgs.runtimeShell} $HOME/.xsession &
+                    waitPID=$!
+                  '';
+              }
+            ];
+
+          enable = true;
+
+          libinput =
+            {
+              enable = true;
+
+              touchpad =
+                {
+                  clickMethod = "clickfinger";
+                  disableWhileTyping = true;
+                  middleEmulation = false;
+                  naturalScrolling = true;
+                  scrollMethod = "twofinger";
+                  tapping = true;
+                };
+            };
+        };
     };
 
   system.stateVersion = "22.11";

@@ -31,6 +31,8 @@
 
   programs = 
     {
+      alacritty.enable = true;
+
       fish =
         {
           enable = true;
@@ -104,7 +106,6 @@
           sshKeys =
             [
               "43FFFE87392A3EA8128FE0356CE3AA586F4F63F7"
-              "cardno:13 193 209"
             ];
         };
     };
@@ -122,6 +123,24 @@
           publicShare = "${config.home.homeDirectory}/public";
           templates = "${config.home.homeDirectory}/templates";
           videos = "${config.home.homeDirectory}/videos";
+        };
+    };
+
+  xsession =
+    {
+      enable = true;
+      windowManager =
+        {
+          i3 =
+            {
+              config =
+                {
+                  modifier = "Mod4";
+                  terminal = "--no-startup-id ${pkgs.alacritty}/bin/alacritty";
+                };
+
+              enable = true;
+            };
         };
     };
 }
