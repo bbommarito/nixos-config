@@ -39,7 +39,7 @@
 
           shellInit =
             ''
-              gpg-connect-agent updatestartuptty /bye
+              gpg-connect-agent updatestartuptty /bye > /dev/null
             '';
         };
 
